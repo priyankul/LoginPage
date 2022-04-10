@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Authentication</title>
+
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: #6abadeba;
+            font-family: 'Arial'
+        }
+
+        .home {
+            width: 380px;
+            overflow: hidden;
+            margin: auto;
+            margin: 20 0 0 450px;
+            padding: 50px;
+            background: #23463f;
+            border-radius: 15px ;
+        }
+
+
+        h1,h3,h4 {
+            text-align: center;
+            color: #277582;
+        }
+
+        .buttons {
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body>
+
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message: </strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+
+    <h1>Welcome to Quiz Application</h1>
+    <div class="home">
+        {% if user.is_authenticated %}
+        <h3>Hello {{ fname }}</h3>
+        <h4>You are logged in.</h4>
+        <div class="buttons">
+            <button type="submit"><a href="/signout">SignOut</a> </button>
+        </div>
+        {% else %}
+        <div class="buttons">
+            <button type="submit"> <a href="/signup">SignUp</a> </button>
+            <button type="submit"><a href="/signin">SignIn</a> </button>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

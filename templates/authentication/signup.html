@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SignUp</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: #6abadeba;
+            font-family: 'Arial'
+        }
+
+        .signup {
+            width: 380px;
+            overflow: hidden;
+            margin: auto;
+            margin: 20 0 0 450px;
+            padding: 50px;
+            background: #23463f;
+            border-radius: 15px ;
+        }
+        label {
+            color: white;
+            display: block;
+            width: 150px;
+        }
+        input {
+            display: block;
+            width: 200px;
+        }
+        h1,h3 {
+            text-align: center;
+            color: #277582;
+        }
+
+        #submit {
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message: </strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true"> &times;</span>
+        </button>
+    </div>
+    {% endfor %}
+    <h1>Quiz App</h1>
+    <h3>Sign Up</h3>
+    <div class="signup">
+
+        <form action="/signup" method="post">
+        {% csrf_token %} <!-- to hide the data in the form -->
+            <table>
+                <tr>
+                    <td><label for="username">Username:</label></td>
+                    <td><input type="text" id="username" name="username" placeholder="Create a username" required></td>
+                </tr>
+                <tr>
+                    <td><label for="fname">First Name:</label></td>
+                    <td><input type="text" id="fname" name="fname" placeholder="Enter first name" required></td>
+                </tr>
+                <tr>
+                    <td><label for="lname">Last Name:</label></td>
+                    <td><input type="text" id="lname" name="lname" placeholder="Enter last name" required></td>
+                </tr>
+                <tr>
+                    <td><label for="email">Email Address:</label></td>
+                    <td><input type="email" id="email" name="email" placeholder="Enter email address" required></td>
+                </tr>
+                <tr>
+                    <td><label for="pass1">Password:</label></td>
+                    <td><input type="password" id="pass1" name="pass1" placeholder="Create a password" required></td>
+                </tr>
+                <tr>
+                    <td><label for="pass2">Confirm Password:</label></td>
+                    <td><input type="password" id="pass2" name="pass2" placeholder="Confirm your password" required></td>
+                </tr>
+
+            </table>
+            <br>
+            <button type="submit" id="submit">Sign Up</button>
+        </form>
+    </div>
+</body>
+</html>

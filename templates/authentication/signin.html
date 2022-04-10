@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SignIn</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: #6abadeba;
+            font-family: 'Arial'
+        }
+        label{
+            color: white;
+            display: block;
+            width: 100px;
+        }
+        input {
+            display: block;
+            width: 180px;
+        }
+        .signin {
+            width: 330px;
+            overflow: hidden;
+            margin: auto;
+            margin: 20 0 0 450px;
+            padding: 50px;
+            background: #23463f;
+            border-radius: 15px ;
+        }
+
+        h1,h3 {
+            text-align: center;
+            color: #277582;
+        }
+
+        #submit {
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message: </strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true"> &times;</span>
+        </button>
+    </div>
+    {% endfor %}
+    <h1>Quiz App</h1>
+    <h3>Sign In</h3>
+    <div class="signin">
+        <form action="/signin" method="post">
+        {% csrf_token %} <!-- to hide the data in the form -->
+            <table>
+                <tr>
+                    <td><label for="username">Username:</label></td>
+                    <td><input type="text" id="username" name="username" placeholder="Enter your username" required></td>
+                </tr>
+                <tr>
+                    <td><label for="pass1">Password:</label></td>
+                    <td><input type="password" id="pass1" name="pass1" placeholder="Enter your password" required></td>
+                </tr>
+            </table>
+            <br>
+            <button type="submit" id="submit">Sign In</button>
+        </form>
+    </div>
+</body>
+</html>
